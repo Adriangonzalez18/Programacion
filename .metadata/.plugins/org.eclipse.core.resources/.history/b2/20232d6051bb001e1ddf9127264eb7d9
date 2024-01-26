@@ -1,0 +1,42 @@
+import java.util.HashMap;
+import java.util.Map;
+
+public class Taller {
+	
+	private Map<String,Coche> coche = new HashMap<String,Coche>();
+	String matricula;
+
+
+	@Override
+	public String toString() {
+		return " \nCoches " + coche;
+	}
+	
+	public void anadeElemento (String color,String marca, String maticula ) {
+		
+		if(coche.containsKey(maticula)) {
+			System.out.println("La matrícula ya esta registrada");
+		}
+		
+		else {
+			coche.put(matricula , new Coche (color,marca ));
+		}
+	}
+	
+	public void eliminaelemento(String maticula) {
+		
+		if(coche.containsKey(maticula)) {
+			coche.replace(maticula,null);
+		}
+		
+		else {
+			
+			System.out.println("La matrícula no existe");
+		}
+	}
+	
+	public void VisualizarMatriculas() {
+		System.out.println(coche.toString());
+	}
+
+}

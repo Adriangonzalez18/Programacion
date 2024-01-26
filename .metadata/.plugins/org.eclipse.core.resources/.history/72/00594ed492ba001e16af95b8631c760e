@@ -1,0 +1,52 @@
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+
+public class Taller {
+	
+	private Map<String,Coche> coches = new HashMap<String,Coche>();
+	String matricula;
+
+	public Taller(Map<String, Coche> coches) {
+		this.coches = coches;
+	}
+
+	public Map<String, Coche> getCoches() {
+		return coches;
+	}
+
+	public void setCoches(Map<String, Coche> coches) {
+		this.coches = coches;
+	}
+
+	@Override
+	public String toString() {
+		return " \nCoches " + coches;
+	}
+	
+	public boolean anadeElemento (Coches coches) {
+	
+		Coches coches1 = new Coches("azucar","hola");
+		
+		coches.put(coches1);
+		
+		return false;
+	
+	}
+	
+	public boolean eliminaElemento() {
+		Iterator<Coche> itera = Coche.iterator();
+		Coches Coches;
+		while (itera.hasNext()) {
+			coche = itera.next();
+			if(coches.get().equals(""))
+			{
+				itera.remove();
+			}
+			if(Coches.getN().equals("leche"))
+			{
+				itera.remove();
+			}
+		}
+	}
+}

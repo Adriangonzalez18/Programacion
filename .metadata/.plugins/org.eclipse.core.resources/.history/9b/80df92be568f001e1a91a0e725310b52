@@ -1,0 +1,95 @@
+package dawbank;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+
+public class CuentaBancaria {
+
+		private String IBAN;
+		private String titular;
+		private double saldo;
+		private int nMovimientos = 0;
+		
+		private  Movimientos[] movimientos;
+		
+		public CuentaBancaria(String IBAN, String titular) {
+
+			this.IBAN = IBAN;
+			this.titular = titular;
+			this.saldo = 0.0;
+			this.movimientos = new Movimientos[100];
+		
+		}
+		
+
+
+		public String getIBAN() {
+			return IBAN;
+		}
+		
+		public void setIBAN(String IBAN) {
+			this.IBAN = IBAN;
+		}
+		
+
+		public String getTitular() {
+			return titular;
+		}
+
+
+		public void setTitular(String titular) {
+			this.titular = titular;
+		}
+
+
+		public double getSaldo() {
+			return saldo;
+		}
+
+
+		public void setSaldo(int saldo) {
+			this.saldo = saldo;
+		}
+
+
+		public int getNMovimientos() {
+			return nMovimientos;
+		}
+
+
+		public void setNMovimientos(int nMovimientos) {
+			this.nMovimientos = nMovimientos;
+		}
+		
+		public boolean registromovimiento(Movimientos movimientos) {
+			
+			boolean movientosregistrado = false;
+			if(nMovimientos >= 0)
+			{
+			
+				if(this.nMovimientos >= 0 && this.nMovimientos < 100);
+			}
+				
+				for(int i = 0; i< this.nMovimientos; i++)
+				
+				if(nMovimientos <= 0) {
+					Movimientos[nMovimientos] = movimientos;
+					nMovimientos ++;
+				
+				}
+			
+				else {
+				System.out.println("La coleccion esta completa");	
+				}
+			
+			return movientosregistrado;
+		}
+
+		public String mostrarInfocuneta() {
+		
+		String s = "IBAN" + this.IBAN + "titular" +  titular + "saldo" + saldo + "movimientos" + movimientos;
+
+		return s;
+		}
+}

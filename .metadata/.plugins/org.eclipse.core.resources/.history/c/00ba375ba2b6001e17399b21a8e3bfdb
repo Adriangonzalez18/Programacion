@@ -1,0 +1,24 @@
+
+public class ContactoPersona extends Contacto{
+
+	private String cumpleanos;
+
+	public ContactoPersona(String nombre, String numerotelefono, String cumplenos) {
+		super(nombre, numerotelefono);
+		this.cumpleanos = cumpleanos;
+	}
+
+	public String getCumpleanos() {
+		return cumpleanos;
+	}
+
+	public void setCumpleanos(String cumpleanos) {
+		this.cumpleanos = cumpleanos;
+	}
+
+	@Override
+	public String toString() {
+		return "Cumpleaños " + cumpleanos ;
+	}
+	
+}
