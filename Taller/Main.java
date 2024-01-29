@@ -10,7 +10,7 @@ public class Main {
 		
 		Taller taller = new Taller();
 		
-		String [] opciones = {"1) Añadir coche", "2) Eliminar coche","3 enseña todo", "3) Salir"};
+		String [] opciones = {"1) Añadir coche", "2) Eliminar coche", "3) Salir"};
 
 		String op;
 		do {
@@ -38,20 +38,19 @@ public class Main {
 				
 				taller.eliminaelemento(matricula);
 			
-			}if(op.equals("3")){
 				
-				taller.visualizaTaller();
-				
-			}else if(op.equals("4")){
+			}else if(op.equals("3")){
 				System.out.println("Saliendo del programa. Buen dia.");
 				
 					}else {
 				System.out.println("Introduzca un valor correcto del menu"+"\n");
 					}
 
-				}while(!op.equals("4"));
+				}while(!op.equals("3"));
 
-		
+		taller.VisualizarMatriculas();
+		taller.VisualizarCoches();
+		taller.visualizaTaller();
 		
 	}	
 public static String mostrarMenu(String [] opciones)
