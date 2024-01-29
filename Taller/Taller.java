@@ -62,7 +62,7 @@ public class Taller {
 		Set<String> taller = coches.keySet();
 		
 	for (String key : taller) {
-		System.out.println(key + " - " + coches.get(key));
+		System.out.println(key + coches.get(key));
 		}		
 	
 		

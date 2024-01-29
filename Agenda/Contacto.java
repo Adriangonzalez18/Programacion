@@ -1,16 +1,15 @@
 
 public class Contacto {
-	String nombre;
+	public String nombre;
 	String telefono;
 	String correo;
 	
 	public Contacto(String nombre, String telefono, String correo) {
-		super();
 		this.nombre = nombre;
 		this.telefono = telefono;
 		this.correo = correo;
 	}
-
+	
 	public String getNombre() {
 		return nombre;
 	}

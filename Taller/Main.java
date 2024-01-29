@@ -37,12 +37,9 @@ public class Main {
 				String matricula = reader.nextLine();
 				
 				taller.eliminaelemento(matricula);
-			
-			}if(op.equals("3")){
 				
-				taller.visualizaTaller();
 				
-			}else if(op.equals("4")){
+			}else if(op.equals("3")){
 				System.out.println("Saliendo del programa. Buen dia.");
 				
 					}else {
@@ -51,7 +48,9 @@ public class Main {
 
 				}while(!op.equals("4"));
 
-		
+		taller.visualizaTaller();
+		taller.VisualizarCoches();
+		taller.VisualizarMatriculas();
 		
 	}	
 public static String mostrarMenu(String [] opciones)
