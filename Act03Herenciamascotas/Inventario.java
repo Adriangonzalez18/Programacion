@@ -2,6 +2,12 @@ import java.util.Scanner;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * @author daw1
+ * @version 1.0.1
+ * @see Inventario
+ */
+
 public class Inventario {
 
 	public static void main(String[] args) {
@@ -9,15 +15,21 @@ public class Inventario {
 		
 		DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 		
-		int nummaxastros = 100;
+		final String NmascotaFormato = "[0-9]{8}[A-Z a-z]{1}";
+		
+		int nummaxmascotas = 100;
 		int numeroacualmascotas = 0;
 		int numeroacualperros = 0;
-		Mascotas inventario [] = new Mascotas [nummaxastros];
+		
+		Mascotas inventario [] = new Mascotas [nummaxmascotas];
 
+		
 		String [] opciones = {"1) Mostrar la lista de animales", "2) Mostrar todos los datos de un animal concreto", 
 				"3) Mostrar todos los datos de todos los animales","4) Insertar animales en el inventario","5) Eliminar animales del inventario"
 				,"6) Vaciar el inventario,","7) Salir"};
-
+		
+		String [] menuanimales = {"1) Registrar perro", "2) Registrar gato", "3) Registrar canario","4) Registrar loro","5) Salir"};
+		
 		String op;
 		do {
 			op = mostrarMenu(opciones);
@@ -45,13 +57,35 @@ public class Inventario {
 				}
 				
 			}else if(op.equals("4")) {	
-				
-				
-				
-				inventario[numeroacualmascotas] = crearPerro();
-				numeroacualmascotas ++;
-				numeroacualperros ++;	
-				
+			    String men;
+			    do {
+			        men = mostrarMenuanimales(menuanimales);
+
+			        if(men.equals("1")){
+			            inventario[numeroacualmascotas] = crearPerro(NmascotaFormato);
+			            numeroacualmascotas ++;
+			            numeroacualperros ++;	
+			            
+			        } else if(men.equals("2")){
+			            inventario[numeroacualmascotas] = crearGato();
+			            numeroacualmascotas ++;
+			            
+			        } else if(men.equals("3")){
+			            inventario[numeroacualmascotas] = crearCanario();
+			            numeroacualmascotas ++;	
+			            
+			        } else if(men.equals("4")){
+			            inventario[numeroacualmascotas] = crearLoro();
+			            numeroacualmascotas ++;	
+			            
+			        } else if(men.equals("5")){
+			            System.out.println("Saliendo del programa. Buen día.");
+			        } else {
+			            System.out.println("Introduzca un valor correcto del menú"+"\n");
+			        }
+
+			    } while (!men.equals("5"));
+			
 
 			}else if(op.equals("5")) {	
 				
@@ -59,7 +93,7 @@ public class Inventario {
 							
 			}else if(op.equals("6")) {			
 			
-				Mascotas inventrio [] = new Mascotas [nummaxastros];				
+						
 							
 				
 			}else if(op.equals("7")){
@@ -73,8 +107,12 @@ public class Inventario {
 
 	}
 		
-	
-
+	/**
+	 * Este método se encarga de iniciar la ejecución del programar
+	 * Éste es el método principal del proyecto
+	 * @param args[] es un arreglo con los parámetros que el reciba por consola
+	 * @return void
+	*/
 	public static String mostrarMenu(String [] opciones)
 	{
 		System.out.println("Seleccione la opcion deseada");
@@ -88,7 +126,113 @@ public class Inventario {
 		return reader.nextLine();	
 	}
 	
-	private static Perro crearPerro() {
+	/**
+	 * Este método se encarga de iniciar la ejecución del programar
+	 * Éste es el método principal del proyecto
+	 * @param args[] es un arreglo con los parámetros que el reciba por consola
+	 * @return void
+	*/
+	public static String mostrarMenuanimales(String [] opciones)
+	{
+		System.out.println("Seleccione la opcion deseada");
+		System.out.println();
+		Scanner reader = new Scanner(System.in);
+		for(String opcion : opciones)
+		{
+			System.out.println(opcion);
+		}
+		
+		return reader.nextLine();	
+	}
+	/**
+	 *
+	 * @param nummaxmascotas Valor numerico entero
+	 * @param numeroacualmascotas Valor numerico entero
+	 * @param numeroacualperros Valor numerico entero
+	 * @param Mascotas nombre del array
+	 * 
+	 */
+	int nummaxmascotas = 100;
+	int numeroacualmascotas = 0;
+	int numeroacualperros = 0;
+	
+	Mascotas inventario [] = new Mascotas [nummaxmascotas];
+	
+	/**
+	 *
+	 * @param Mascotas Valor numerico entero
+	 * @param Mascotas Valor numerico entero
+	 * 
+	 *  @return Cadena devuelta.
+	 */
+	
+	public boolean eliminarMascotas(Mascotas Mascotas ) {
+	    boolean isRemoved = false;
+
+	    if (this.inventario != null) {
+	        if (this.numeroacualmascotas > 0) {
+	            int pos = -1;
+	            
+	            
+	            for (int i = 0; i < this.numeroacualmascotas; i++) {
+	                if (this.inventario[i] != null && this.inventario[i].getNmascota().equalsIgnoreCase(Mascotas.getNmascota())) {
+	                    pos = i;
+	                    isRemoved = true;
+	                    break;
+	                }
+	            }
+
+	            if (isRemoved) {
+	                
+	                for (int i = pos; i < this.numeroacualmascotas - 1; i++) {
+	                    this.inventario[i] = this.inventario[i + 1];
+	                }
+
+	                
+	                this.inventario[this.numeroacualmascotas - 1] = null;
+
+	                numeroacualmascotas--;
+	            } else {
+	                System.out.println("No se encontró la mascota con DNI: " + Mascotas.getNmascota());
+	            }
+	        } else {
+	            System.out.println("La colección de mascotas está vacía");
+	        }
+	    }
+
+	    return isRemoved;
+	}
+	
+	/**
+	 *
+	 * @param Nmascota Valor numerico entero
+	 * 
+	 *  @return Cadena devuelta.
+	 */
+	
+	public Mascotas encontrarPorNmascota(String Nmascota)
+	{
+		Mascotas t = null;
+		
+		for(int i = 0; i < this.numeroacualmascotas; i++)
+		{
+			if(this.inventario[i].getNmascota().equalsIgnoreCase(Nmascota))
+			{
+				t = inventario[i];
+			}
+		}
+		
+		return t;
+	}
+	
+	/**
+	 *
+	 * @param Nmascota Valor numerico entero
+	 * 
+	 *  @return Cadena devuelta.
+	 */
+	
+	private static Perro crearPerro(String nmascotaFormato) {
 
 		Scanner reader = new Scanner (System.in);
 		Scanner entrada = new Scanner (System.in);
@@ -99,10 +243,10 @@ public class Inventario {
 		System.out.print("Introduzca el estado del Perro: ");
 		String estado = reader.next();
 
-		System.out.print("Introduzca la fecha de nacimiento del Perro: ");
+		System.out.print("Introduzca la fecha de nacimiento del Perro: ejemplo 01/01/2024 ");
 		String fechanacimiento = reader.next();
 		
-		System.out.print("Introduzca el Nª mascota del Perro: ");
+		System.out.print("Introduzca el Nª mascota del Perro: ejemplo 12345678a ");
 		String nmascota = reader.next();
 		
 		System.out.print("Introduzca la raza del Perro: ");
@@ -127,6 +271,13 @@ public class Inventario {
 		
 	}
 	
+	/**
+	 *
+	 * @param Nmascota Valor numerico entero
+	 * 
+	 *  @return Cadena devuelta.
+	 */
+	
 	private static Gatos crearGato() {
 
 		Scanner reader = new Scanner (System.in);
@@ -138,10 +289,10 @@ public class Inventario {
 		System.out.print("Introduzca el estado del Gato: ");
 		String estado = reader.next();
 
-		System.out.print("Introduzca la fecha de nacimiento del Gato: ");
+		System.out.print("Introduzca la fecha de nacimiento del Gato: ejemplo 01/01/2024 ");
 		String fechanacimiento = reader.next();
 		
-		System.out.print("Introduzca el Nª mascota del Gato: ");
+		System.out.print("Introduzca el Nª mascota del Gato: ejemplo 12345678a ");
 		String nmascota = reader.next();
 		
 		System.out.print("Introduzca el color del Gato: ");
@@ -168,6 +319,13 @@ public class Inventario {
 		
 	}
 	
+	/**
+	 *
+	 * @param Nmascota Valor numerico entero
+	 * 
+	 *  @return Cadena devuelta.
+	 */
+	
 	private static Canario crearCanario() {
 
 		Scanner reader = new Scanner (System.in);
@@ -179,10 +337,10 @@ public class Inventario {
 		System.out.print("Introduzca el estado del Canario: ");
 		String estado = reader.next();
 
-		System.out.print("Introduzca la fecha de nacimiento del Canario: ");
+		System.out.print("Introduzca la fecha de nacimiento del Canario: ejemplo 01/01/2024 ");
 		String fechanacimiento = reader.next();
 		
-		System.out.print("Introduzca el Nª mascota del Canario: ");
+		System.out.print("Introduzca el Nª mascota del Canario: ejemplo 12345678a ");
 		String nmascota = reader.next();
 		
 		System.out.print("Introduzca el tipo de pico del Canario: ");
@@ -213,33 +371,41 @@ public class Inventario {
 		
 		
 	}
+	
+	/**
+	 *
+	 * @param Nmascota Valor numerico entero
+	 * 
+	 *  @return Cadena devuelta.
+	 */
+	
 	private static Loro crearLoro() {
 
 		Scanner reader = new Scanner (System.in);
 		Scanner entrada = new Scanner (System.in);
 		
-		System.out.print("Introduzca el Nombre del Canario: ");
+		System.out.print("Introduzca el Nombre del Loro: ");
 		String nombre = reader.next();
 		
-		System.out.print("Introduzca el estado del Canario: ");
+		System.out.print("Introduzca el estado del Loro: ");
 		String estado = reader.next();
 
-		System.out.print("Introduzca la fecha de nacimiento del Canario: ");
+		System.out.print("Introduzca la fecha de nacimiento del Canario: ejemplo 01/01/2024 ");
 		String fechanacimiento = reader.next();
 		
-		System.out.print("Introduzca el Nª mascota del Canario: ");
+		System.out.print("Introduzca el Nª mascota del Loro: ejemplo 12345678a ");
 		String nmascota = reader.next();
 		
-		System.out.print("Introduzca el tipo de pico del Canario: ");
+		System.out.print("Introduzca el tipo de pico del Loro: ");
 		String pico = reader.next();
 		
-		System.out.print("Introduzca el tipo de pico del Canario: ");
+		System.out.print("Introduzca el tipo de pico del Loro: ");
 		String vuela = reader.next();
 		
-		System.out.print("Introduzca el color del Canario: ");
+		System.out.print("Introduzca el origen del Loro: ");
 		String origen = reader.next();
 		
-		System.out.print("Introduzca si tiene pelolargo el Canario: ");
+		System.out.print("Introduzca si habla el Loro: ");
 		String habla = reader.next();
 		
 		
@@ -261,3 +427,4 @@ public class Inventario {
 	}
 	
 }
+
