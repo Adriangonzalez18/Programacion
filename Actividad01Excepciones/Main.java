@@ -8,10 +8,6 @@ public class Main {
 
 		Scanner reader = new Scanner (System.in);
 		
-		
-		
-		 /*
-		
 			//Ejercicio1
 		
 			try {
@@ -63,7 +59,7 @@ public class Main {
 				System.out.println("El programa ha finalizado");
 			}
 		
-		*/
+		
 			//Ejercicio4
 		
 		System.out.println("Introduce el numero de datos que vas a meter: ");

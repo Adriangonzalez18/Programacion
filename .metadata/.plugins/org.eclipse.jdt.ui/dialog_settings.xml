@@ -37,7 +37,7 @@
 		<item key="VisibilityModifier" value="1"/>
 		<item key="FinalModifier" value="false"/>
 		<item key="SynchronizedModifier" value="false"/>
-		<item key="Comments" value="false"/>
+		<item key="Comments" value="true"/>
 		<item key="LimitElements" value="false"/>
 		<item key="IgnoreDefault" value="true"/>
 		<item key="StringStyle" value="0"/>
@@ -60,7 +60,7 @@
 		<item key="VisibilityModifier" value="1"/>
 		<item key="FinalModifier" value="false"/>
 		<item key="SynchronizedModifier" value="false"/>
-		<item key="Comments" value="false"/>
+		<item key="Comments" value="true"/>
 	</section>
 	<section name="GenerateConstructorUsingFieldsSelectionDialog">
 		<item key="OmitCallToSuper" value="false"/>
@@ -78,5 +78,99 @@
 		<item key="DIALOG_WIDTH" value="516"/>
 		<item key="DIALOG_HEIGHT" value="691"/>
 		<item key="DIALOG_FONT_NAME" value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI"/>
+	</section>
+	<section name="JavadocWizardDialog">
+		<item key="DIALOG_X_ORIGIN" value="102"/>
+		<item key="DIALOG_Y_ORIGIN" value="150"/>
+		<item key="DIALOG_WIDTH" value="772"/>
+		<item key="DIALOG_HEIGHT" value="567"/>
+		<item key="DIALOG_FONT_NAME" value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI"/>
+	</section>
+	<section name="javadoc">
+		<item key="javadoc_command_history" value="C:\eclipse\plugins\org.eclipse.justj.openjdk.hotspot.jre.full.win32.x86_64_17.0.8.v20230831-1047\jre\bin\javadoc.exe"/>
+		<item key="fromStandard" value="true"/>
+		<item key="docletname" value=""/>
+		<item key="docletpath" value=""/>
+		<item key="access" value="public"/>
+		<item key="use" value="true"/>
+		<item key="author" value="true"/>
+		<item key="version" value="true"/>
+		<item key="nodeprecated" value="false"/>
+		<item key="nodeprecatedlist" value="false"/>
+		<item key="splitindex" value="true"/>
+		<item key="noindex" value="false"/>
+		<item key="notree" value="false"/>
+		<item key="nonavbar" value="false"/>
+		<item key="openinbrowser" value="false"/>
+		<item key="source" value="17"/>
+		<item key="antpath" value="C:\Users\daw1\eclipse-workspace\Act03Herenciamascotas\javadoc.xml"/>
+		<item key="destdir" value="C:\Users\daw1\eclipse-workspace\Act03Herenciamascotas\doc"/>
+		<section name="projects">
+			<section name="hola">
+				<item key="href" value=""/>
+				<item key="destdir" value="C:\Users\daw1\eclipse-workspace\hola\doc"/>
+				<item key="antpath" value="C:\Users\daw1\eclipse-workspace\hola\javadoc.xml"/>
+			</section>
+			<section name="Herencia2Agenda">
+				<item key="href" value=""/>
+				<item key="destdir" value="C:\Users\daw1\eclipse-workspace\Herencia2Agenda\doc"/>
+				<item key="antpath" value="C:\Users\daw1\eclipse-workspace\Herencia2Agenda\javadoc.xml"/>
+			</section>
+			<section name="examenadrian">
+				<item key="href" value=""/>
+				<item key="destdir" value="C:\Users\daw1\eclipse-workspace\examenadrian\doc"/>
+				<item key="antpath" value="C:\Users\daw1\eclipse-workspace\examenadrian\javadoc.xml"/>
+			</section>
+			<section name="Agenda">
+				<item key="href" value=""/>
+				<item key="destdir" value="C:\Users\daw1\eclipse-workspace\Agenda\doc"/>
+				<item key="antpath" value="C:\Users\daw1\eclipse-workspace\Agenda\javadoc.xml"/>
+			</section>
+			<section name="Actividad01Listas">
+				<item key="href" value=""/>
+				<item key="destdir" value="C:\Users\daw1\eclipse-workspace\Actividad01Listas\doc"/>
+				<item key="antpath" value="C:\Users\daw1\eclipse-workspace\Actividad01Listas\javadoc.xml"/>
+			</section>
+			<section name="Taller">
+				<item key="href" value=""/>
+				<item key="destdir" value="C:\Users\daw1\eclipse-workspace\Taller\doc"/>
+				<item key="antpath" value="C:\Users\daw1\eclipse-workspace\Taller\javadoc.xml"/>
+			</section>
+			<section name="Actividad04HerenciaII">
+				<item key="href" value=""/>
+				<item key="destdir" value="C:\Users\daw1\eclipse-workspace\Actividad04HerenciaII\doc"/>
+				<item key="antpath" value="C:\Users\daw1\eclipse-workspace\Actividad04HerenciaII\javadoc.xml"/>
+			</section>
+			<section name="Act03Herenciamascotas">
+				<item key="href" value=""/>
+				<item key="destdir" value="C:\Users\daw1\eclipse-workspace\Act03Herenciamascotas\doc"/>
+				<item key="antpath" value="C:\Users\daw1\eclipse-workspace\Act03Herenciamascotas\javadoc.xml"/>
+			</section>
+			<section name="Act03Herencia">
+				<item key="href" value=""/>
+				<item key="destdir" value="C:\Users\daw1\eclipse-workspace\Act03Herencia\doc"/>
+				<item key="antpath" value="C:\Users\daw1\eclipse-workspace\Act03Herencia\javadoc.xml"/>
+			</section>
+			<section name="depuracion">
+				<item key="href" value=""/>
+				<item key="destdir" value="C:\Users\daw1\eclipse-workspace\depuracion\doc"/>
+				<item key="antpath" value="C:\Users\daw1\eclipse-workspace\depuracion\javadoc.xml"/>
+			</section>
+			<section name="Actividad01Excepciones">
+				<item key="href" value=""/>
+				<item key="destdir" value="C:\Users\daw1\eclipse-workspace\Actividad01Excepciones\doc"/>
+				<item key="antpath" value="C:\Users\daw1\eclipse-workspace\Actividad01Excepciones\javadoc.xml"/>
+			</section>
+			<section name="videodaw12">
+				<item key="href" value=""/>
+				<item key="destdir" value="C:\Users\daw1\eclipse-workspace\videodaw12\doc"/>
+				<item key="antpath" value="C:\Users\daw1\eclipse-workspace\videodaw12\javadoc.xml"/>
+			</section>
+			<section name="dawbank">
+				<item key="href" value=""/>
+				<item key="destdir" value="C:\Users\daw1\eclipse-workspace\dawbank\doc"/>
+				<item key="antpath" value="C:\Users\daw1\eclipse-workspace\dawbank\javadoc.xml"/>
+			</section>
+		</section>
 	</section>
 </section>
