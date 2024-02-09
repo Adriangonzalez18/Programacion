@@ -110,7 +110,8 @@ public abstract class Mascotas {
 	}
 
 	/**
-	 * @param muestra es un metodo pra mostrar la informacion por pantalla
+	 * 
+	 * @return devuelve el valor de las mascotas
 	 */
 	
 	public String muestra() {

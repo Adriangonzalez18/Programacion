@@ -9,7 +9,10 @@ import java.time.format.DateTimeFormatter;
  */
 
 public class Inventario {
-
+/**
+ * 
+ * @param args main
+ */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
@@ -23,7 +26,9 @@ public class Inventario {
 		
 		Mascotas inventario [] = new Mascotas [nummaxmascotas];
 
-		
+		/**
+		 * 
+		 */
 		String [] opciones = {"1) Mostrar la lista de animales", "2) Mostrar todos los datos de un animal concreto", 
 				"3) Mostrar todos los datos de todos los animales","4) Insertar animales en el inventario","5) Eliminar animales del inventario"
 				,"6) Vaciar el inventario,","7) Salir"};
@@ -108,11 +113,10 @@ public class Inventario {
 	}
 		
 	/**
-	 * Este método se encarga de iniciar la ejecución del programar
-	 * Éste es el método principal del proyecto
-	 * @param args[] es un arreglo con los parámetros que el reciba por consola
-	 * @return void
-	*/
+	 * 
+	 * @param opciones para el menu general
+	 * @return devuelve lo introducido por pantalla
+	 */
 	public static String mostrarMenu(String [] opciones)
 	{
 		System.out.println("Seleccione la opcion deseada");
@@ -127,11 +131,10 @@ public class Inventario {
 	}
 	
 	/**
-	 * Este método se encarga de iniciar la ejecución del programar
-	 * Éste es el método principal del proyecto
-	 * @param args[] es un arreglo con los parámetros que el reciba por consola
-	 * @return void
-	*/
+	 * 
+	 * @param opciones para el menu de los animales
+	 * @return devuelve lo introducido por pantalla
+	 */
 	public static String mostrarMenuanimales(String [] opciones)
 	{
 		System.out.println("Seleccione la opcion deseada");
@@ -156,11 +159,13 @@ public class Inventario {
 	int numeroacualmascotas = 0;
 	int numeroacualperros = 0;
 	
+	/**
+	 * 
+	 */
 	Mascotas inventario [] = new Mascotas [nummaxmascotas];
 	
 	/**
 	 *
-	 * @param Mascotas Valor numerico entero
 	 * @param Mascotas Valor numerico entero
 	 * 
 	 *  @return Cadena devuelta.

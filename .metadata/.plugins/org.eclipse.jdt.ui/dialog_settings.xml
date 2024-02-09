@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
-	<item key="org.eclipse.jdt.ui.last.selected.jre.kind2" value="2"/>
+	<item key="org.eclipse.jdt.ui.last.selected.jre.kind2" value="1"/>
 	<item key="org.eclipse.jdt.ui.last.selected.execution.enviroment" value="JavaSE-17"/>
 	<item key="TypeHierarchyViewPart.hierarchyview" value="2"/>
 	<item key="TypeHierarchyViewPart.qualifiednames" value="false"/>
 	<item key="TypeHierarchyViewPart.linkeditors" value="false"/>
 	<item key="TypeHierarchyViewPart.orientation" value="3"/>
+	<item key="org.eclipse.jdt.ui.last.selected.project.jre" value="jre"/>
 	<section name="org.eclipse.jdt.internal.ui.packageview.PackageExplorerPart">
 		<item key="group_libraries" value="true"/>
 		<item key="layout" value="2"/>
@@ -126,6 +127,11 @@
 				<item key="destdir" value="C:\Users\daw1\eclipse-workspace\Agenda\doc"/>
 				<item key="antpath" value="C:\Users\daw1\eclipse-workspace\Agenda\javadoc.xml"/>
 			</section>
+			<section name="Actividad01ExcepcionesGato">
+				<item key="href" value=""/>
+				<item key="destdir" value="C:\Users\daw1\eclipse-workspace\Actividad01ExcepcionesGato\doc"/>
+				<item key="antpath" value="C:\Users\daw1\eclipse-workspace\Actividad01ExcepcionesGato\javadoc.xml"/>
+			</section>
 			<section name="Actividad01Listas">
 				<item key="href" value=""/>
 				<item key="destdir" value="C:\Users\daw1\eclipse-workspace\Actividad01Listas\doc"/>
@@ -151,6 +157,11 @@
 				<item key="destdir" value="C:\Users\daw1\eclipse-workspace\Act03Herencia\doc"/>
 				<item key="antpath" value="C:\Users\daw1\eclipse-workspace\Act03Herencia\javadoc.xml"/>
 			</section>
+			<section name="Actividad01ExcepcionesGatoarraylist">
+				<item key="href" value=""/>
+				<item key="destdir" value="C:\Users\daw1\eclipse-workspace\Actividad01ExcepcionesGatoarraylist\doc"/>
+				<item key="antpath" value="C:\Users\daw1\eclipse-workspace\Actividad01ExcepcionesGatoarraylist\javadoc.xml"/>
+			</section>
 			<section name="depuracion">
 				<item key="href" value=""/>
 				<item key="destdir" value="C:\Users\daw1\eclipse-workspace\depuracion\doc"/>
@@ -166,10 +177,10 @@
 				<item key="destdir" value="C:\Users\daw1\eclipse-workspace\videodaw12\doc"/>
 				<item key="antpath" value="C:\Users\daw1\eclipse-workspace\videodaw12\javadoc.xml"/>
 			</section>
-			<section name="dawbank">
+			<section name="DawBankExcepciones">
 				<item key="href" value=""/>
-				<item key="destdir" value="C:\Users\daw1\eclipse-workspace\dawbank\doc"/>
-				<item key="antpath" value="C:\Users\daw1\eclipse-workspace\dawbank\javadoc.xml"/>
+				<item key="destdir" value="C:\Users\daw1\eclipse-workspace\DawBankExcepciones\doc"/>
+				<item key="antpath" value="C:\Users\daw1\eclipse-workspace\DawBankExcepciones\javadoc.xml"/>
 			</section>
 		</section>
 	</section>
