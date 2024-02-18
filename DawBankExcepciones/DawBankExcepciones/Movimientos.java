@@ -57,8 +57,8 @@ public class Movimientos {
 
 	@Override
 	public String toString() {
-		return "Movimientos [fecha=" + fecha + ", idmovimiento=" + idmovimiento + ", tmovimiento=" + tmovimiento
-				+ ", cantidad=" + cantidad + "]";
+		return " \nfecha " + fecha + " \nidmovimiento " + idmovimiento + " \ntmovimiento " + tmovimiento
+				+ " \ncantidad " + cantidad ;
 	}
 	
 

@@ -1,5 +1,7 @@
 package DawBankExcepciones;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -7,10 +9,11 @@ import java.util.regex.Pattern;
 public class DawBank {
 	
 
-	public static void main(String[] args) throws AvisarHaciendaException {
+	public static void main(String[] args) throws AvisarHaciendaException, CuentaException, CantidadpositivaException {
 		// TODO Auto-generated method stub
 		
-
+		
+		
 		Scanner reader = new Scanner(System.in);
 		
 		System.out.println("Inserte el IBAN: ");
@@ -19,10 +22,9 @@ public class DawBank {
 		System.out.println("Inserte el Titular de la cuenta: ");
 		String titular = reader.nextLine();
 		
-	
-		CuentaBancaria cuenta = new CuentaBancaria(IBAN,titular);
-		
-		
+		CuentaBancaria nuevaCuenta = new CuentaBancaria(IBAN, titular);
+
+		movimientos.put(nuevaCuenta.getIBAN(),titular);
 		
 		String [] opciones = {"","1) Datos de la cuenta", "2) IBAN", "3) Titular", "4) Saldo",
 		"5) Ingreso","6) Retirada","7) Movimientos","8) Salir"};
@@ -34,23 +36,23 @@ public class DawBank {
 			
 			if(op.equals("1")){
 				
-				cuenta.mostrarInfocuneta();
+				nuevaCuenta.mostrarInfocuneta();
 			}
 			
 			else if(op.equals("2")){
 				
-                System.out.println("IBAN: " + cuenta.getIBAN());
+                System.out.println("IBAN: " + nuevaCuenta.getIBAN());
 
 			}
 			
 			else if(op.equals("3")){
-				System.out.println("Titular: " + cuenta.getTitular());	
+				System.out.println("Titular: " + nuevaCuenta.getTitular());	
 				
 			}
 			
 			else if(op.equals("4")){
 				
-				System.out.println("Saldo: " + cuenta.getSaldo() + " euros");
+				System.out.println("Saldo: " + nuevaCuenta.getSaldo() + " euros");
 				
 			}	
 			
@@ -58,19 +60,19 @@ public class DawBank {
 				
 				System.out.println("Inserte el dinero que quieres meter: ");
 				double cantidadI = reader.nextDouble();
-				cuenta.realizarIngreso(cantidadI);
+				nuevaCuenta.realizarIngreso(cantidadI);
 			}
 			
 			else if(op.equals("6")){
 				
 				System.out.println("Inserte el dinero que quieres retirar: ");
 				double cantidadR= reader.nextDouble();
-                cuenta.realizarRetirada(cantidadR);
+				nuevaCuenta.realizarRetirada(cantidadR);
 			}
 			
 			else if(op.equals("7")){
 				
-				cuenta.mostrarMovimientos();
+				
 				
 			}
 			

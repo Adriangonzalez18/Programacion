@@ -3,11 +3,11 @@ package DawBankExcepciones;
 public class CuentaException extends Exception{
 	
 	private static final long serialVersionUID = 1L;
-	private double cantidad;
+	private double saldo;
 		
-	public CuentaException(double cantidad) {
+	public CuentaException(double saldo) {
 		super("El saldo es negativo"); 
-		this.cantidad =  cantidad;
+		this.saldo =  saldo;
 	}
 
 }

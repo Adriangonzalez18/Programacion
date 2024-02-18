@@ -24,6 +24,7 @@
 	</section>
 	<section name="OptionalMessageDialog.hide.">
 		<item key="org.eclipse.jdt.ui.typecomment.deprecated" value="true"/>
+		<item key="EmptyDefaultAssistCategory" value="false"/>
 	</section>
 	<section name="NewClassWizardPage">
 		<item key="create_constructor" value="false"/>
@@ -38,7 +39,7 @@
 		<item key="VisibilityModifier" value="1"/>
 		<item key="FinalModifier" value="false"/>
 		<item key="SynchronizedModifier" value="false"/>
-		<item key="Comments" value="true"/>
+		<item key="Comments" value="false"/>
 		<item key="LimitElements" value="false"/>
 		<item key="IgnoreDefault" value="true"/>
 		<item key="StringStyle" value="0"/>
