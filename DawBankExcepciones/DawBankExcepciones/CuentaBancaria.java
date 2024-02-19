@@ -6,10 +6,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 
-	
-
-
-
 public class CuentaBancaria {
 
 		private String IBAN;
@@ -62,58 +58,69 @@ public class CuentaBancaria {
 		        System.out.println("Titular: " + titular);
 		        System.out.println("Saldo: " + saldo + " euros");
 		    }
+		 
+		 public boolean registrarCuenta(String IBAN, String titular ) {
+			 boolean cuentacreada = false;
+			 
+			 CuentaBancaria nuevaCuenta = new CuentaBancaria(IBAN, titular);
+			 movimientos.put(nuevaCuenta.getIBAN(),titular);
+			 
+			 
+			return cuentacreada;
+		 }
+		 
 		 public void realizarIngreso(double cantidad)throws AvisarHaciendaException , CuentaException {
 		        try {
 		            saldo += cantidad;
 		            System.out.println("Ingreso realizado con éxito.");
 		            AvisarHacienda(cantidad);
-		            CuentaException(saldo);
+		            CuentaException(cantidad);
 		            
 		 		}catch(AvisarHaciendaException p) {
-				System.out.println(p.getMessage());
+				p.printStackTrace();
 		 		
 		 		}catch(CuentaException p) {
-				System.out.println(p.getMessage());
+				p.printStackTrace();
 		 		}
 		 }
-		   public void realizarRetirada(double cantidad)throws AvisarHaciendaException , CuentaException ,CantidadpositivaException {
+		   public void realizarRetirada(double cantidad)throws AvisarHaciendaException , CuentaException ,SaldonegativoException {
 			   try {	
 					   saldo -= cantidad;
 					   System.out.println("Retirada realizada con éxito.");
 					   AvisarHacienda(cantidad); 
-					   CuentaException(saldo);
-					   CantidadpositivaException(cantidad);
+					   CuentaException(cantidad);
+					   SaldonegativoException(saldo);
 					   
-			  }catch(AvisarHaciendaException p) {
-	   				System.out.println(p.getMessage());
+			   }catch(AvisarHaciendaException p) {
+					p.printStackTrace();
 			  
 			  }catch(CuentaException p) {
-	   				System.out.println(p.getMessage());
-			 
-			  }catch(CantidadpositivaException p) {
-				  System.out.println(p.getMessage());
+	   				p.printStackTrace();
+	   				
+			  }catch(SaldonegativoException p) {
+				  	p.printStackTrace();
 			  } 
 
 		    }
 	
 		    static void AvisarHacienda(double cantidad) throws AvisarHaciendaException {
-				if(cantidad <= 3000) {
+				if(cantidad <= 2999) {
 				}else {
 					throw new AvisarHaciendaException(cantidad);
 				}
 			}
 		    
-		    static void CantidadpositivaException(double cantidad) throws CantidadpositivaException {
-				if(cantidad >= 0) {
+		    static void CuentaException(double cantidad) throws CuentaException {
+				if(cantidad >= 1) {
 				}else {
-					throw new CantidadpositivaException(cantidad);
+					throw new CuentaException(cantidad);
 				}
 			}
 		    
-		    static void CuentaException(double saldo) throws CuentaException {
-				if(saldo <= -50) {
+		    static void SaldonegativoException(double saldo) throws SaldonegativoException {
+				if(saldo >= -50) {
 				}else {
-					throw new CuentaException(saldo);
+					throw new SaldonegativoException(saldo);
 				}
 			}
 

@@ -1,5 +1,6 @@
 package DawBankExcepciones;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class Cliente extends Persona{
@@ -9,7 +10,7 @@ public class Cliente extends Persona{
 	private String direccion;
 
 
-	public Cliente(String nombre, String dni, LocalDateTime fechanacimiento, String telefono, String email,
+	public Cliente(String nombre, String dni, LocalDate fechanacimiento, String telefono, String email,
 			String direccion) {
 		super(nombre, dni, fechanacimiento);
 		this.telefono = telefono;

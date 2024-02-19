@@ -1,14 +1,14 @@
 package DawBankExcepciones;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 public class Persona {
 
 	protected String nombre;
 	protected String dni;
-	protected LocalDateTime fechanacimiento;
+	protected LocalDate fechanacimiento;
 	
-	public Persona(String nombre, String dni, LocalDateTime fechanacimiento) {
+	public Persona(String nombre, String dni, LocalDate fechanacimiento) {
 		super();
 		this.nombre = nombre;
 		this.dni = dni;
@@ -36,12 +36,12 @@ public class Persona {
 	}
 
 
-	public LocalDateTime getFechanacimiento() {
+	public LocalDate getFechanacimiento() {
 		return fechanacimiento;
 	}
 
 
-	public void setFechanacimiento(LocalDateTime fechanacimiento) {
+	public void setFechanacimiento(LocalDate fechanacimiento) {
 		this.fechanacimiento = fechanacimiento;
 	}
 
