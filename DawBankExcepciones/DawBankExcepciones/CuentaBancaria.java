@@ -2,6 +2,7 @@ package DawBankExcepciones;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -13,15 +14,7 @@ public class CuentaBancaria {
 		private double saldo;
 		
 		
-		Map<String, String> movimientos = new HashMap<String, String>();
-		
-		public CuentaBancaria(String IBAN, String titular) {
-
-			this.IBAN = IBAN;
-			this.titular = titular;
-			this.saldo = 0.0;
-		
-		}
+		Map<String, String> cuentas = new HashMap<String, String>();
 		
 
 		public String getIBAN() {
@@ -51,30 +44,68 @@ public class CuentaBancaria {
 		public void setSaldo(int saldo) {
 			this.saldo = saldo;
 		}
-		
-		
-		 public void mostrarInfocuneta() {
-		        System.out.println("IBAN: " + IBAN);
-		        System.out.println("Titular: " + titular);
-		        System.out.println("Saldo: " + saldo + " euros");
-		    }
 		 
-		 public boolean registrarCuenta(String IBAN, String titular ) {
-			 boolean cuentacreada = false;
-			 
-			 CuentaBancaria nuevaCuenta = new CuentaBancaria(IBAN, titular);
-			 movimientos.put(nuevaCuenta.getIBAN(),titular);
-			 
-			 
-			return cuentacreada;
+		 @Override
+		public String toString() {
+			return " \nIBAN " + IBAN + " \ntitular " + titular + " \nsaldo " + saldo ;
+		}
+
+		 public String crearcuenta(String IBAN, String titular) {
+			    if (cuentas.containsKey(IBAN)) {
+			        System.out.println("El IBAN ya está registrado");
+			        return "El IBAN ya está registrado";
+			    
+			    } else {
+			        cuentas.put(IBAN, titular);
+			        System.out.println("Cuenta creada con éxito");
+			        return "Cuenta creada con éxito";
+			    }
+			}
+
+		 public boolean eliminarcuenta(String IBAN) {
+				
+				boolean isRemoved = false;
+				if(cuentas.containsKey(IBAN)) {
+					cuentas.remove(IBAN);
+					isRemoved = true;
+					System.out.println("La cuenta se elimino correctamente");
+				}
+				
+				else {
+					System.out.println("El IBAN no existe");
+				}
+				
+				return isRemoved;
+			}
+		 
+		 public void VisualizarCuenta(String IBAN) {
+			    if (cuentas.containsKey(IBAN)) {
+			       
+			        String informacionCuenta = cuentas.get(IBAN).toString();
+			        System.out.println(informacionCuenta);
+			    } else {
+			        System.out.println("El IBAN no existe");
+			    }
 		 }
-		 
-		 public void realizarIngreso(double cantidad)throws AvisarHaciendaException , CuentaException {
+
+		 public void realizarIngreso(double cantidad,String IBAN)throws AvisarHaciendaException , CuentaException {
 		        try {
-		            saldo += cantidad;
-		            System.out.println("Ingreso realizado con éxito.");
-		            AvisarHacienda(cantidad);
-		            CuentaException(cantidad);
+		            
+		        	 if (cuentas.containsKey(IBAN)) {
+					        Set<String> keys = cuentas.keySet();
+					        
+					        for (String key : keys) {
+					            if (key.equals(IBAN)) {
+					            	saldo += cantidad;
+						            System.out.println("Ingreso realizado con éxito.");
+						            AvisarHacienda(cantidad);
+						            CuentaException(cantidad);
+					                break; 
+					            }
+					        }
+					    } else {
+					        System.out.println("El IBAN no existe");
+					    }
 		            
 		 		}catch(AvisarHaciendaException p) {
 				p.printStackTrace();
@@ -83,13 +114,26 @@ public class CuentaBancaria {
 				p.printStackTrace();
 		 		}
 		 }
-		   public void realizarRetirada(double cantidad)throws AvisarHaciendaException , CuentaException ,SaldonegativoException {
+		   public void realizarRetirada(double cantidad,String IBAN)throws AvisarHaciendaException , CuentaException ,SaldonegativoException {
 			   try {	
-					   saldo -= cantidad;
-					   System.out.println("Retirada realizada con éxito.");
-					   AvisarHacienda(cantidad); 
-					   CuentaException(cantidad);
-					   SaldonegativoException(saldo);
+					  
+				   if (cuentas.containsKey(IBAN)) {
+				        Set<String> keys = cuentas.keySet();
+				        
+				        for (String key : keys) {
+				            if (key.equals(IBAN)) {
+				            	saldo -= cantidad;
+								System.out.println("Retirada realizada con éxito.");
+								AvisarHacienda(cantidad); 
+								CuentaException(cantidad);
+								SaldonegativoException(saldo);
+				                break; 
+				            }
+				        }
+				    } else {
+				        System.out.println("El IBAN no existe");
+				    }
+				   
 					   
 			   }catch(AvisarHaciendaException p) {
 					p.printStackTrace();
