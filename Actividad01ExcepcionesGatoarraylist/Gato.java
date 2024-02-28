@@ -12,7 +12,7 @@ public class Gato {
 			this.nombre = nombre;
 		}
 		else {
-			throw new GatoException(nombre, edad);
+			throw new GatoException(nombre,edad);
 		}
 		
 	}
