@@ -1,4 +1,6 @@
 import java.io.BufferedWriter;
+import java.io.DataOutputStream;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.HashMap;
@@ -15,7 +17,8 @@ public class Main {
 		Scanner reader = new Scanner(System.in);
 		
 		final String myPath = "./src/Resources/";
-		final String myFile = "ejemplo.txt";
+		final String myFile = "trabajadores.dat";
+		final boolean modoApend = false; //cambiar a true para activar modo append
 
 		Map<String, Producto> miLista = new HashMap<String, Producto>();
 	
@@ -81,26 +84,20 @@ public class Main {
 				
 			}else if(op.equals("4")){	
 				
-				try(FileWriter myWriter = new FileWriter(myPath+myFile, false);
-						BufferedWriter buffer = new BufferedWriter(myWriter);)
+				try(FileOutputStream fichero = new FileOutputStream(myPath+myFile, modoApend);
+						DataOutputStream escritor = new DataOutputStream(fichero);)
 				{
-					for(String alumno : miLista) {
-						
-						 buffer.write(alumno+",0,"+miLista.indexOf(alumno));
-						 buffer.newLine(); 
-					}
-
 					
-				}catch(IOException e)
-				{
-					System.out.println("Se ha producido un error en el manejo del fichero");
-					System.out.println(e.getMessage());
-				}
-				finally {
-					System.out.println("La escritura ha finalizado con exito.");
-				}
+					//Recorremos la coleccion y escribimos los datos que tiene el objeto Trabajador
+					for(Producto p: miLista)
+					{
+						escritor.writeUTF(p.getCodigo());
+						escritor.writeUTF(p.getNombre());
+						escritor.writeInt(p.getCantidad());
+						escritor.writeDouble(p.getPrecio());
+					}
 				
-				
+				}
 			}else if(op.equals("5")){
 				
 				System.out.println("Saliendo del programa. Buen dia.");
