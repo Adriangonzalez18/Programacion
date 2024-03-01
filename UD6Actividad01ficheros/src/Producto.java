@@ -1,4 +1,3 @@
-
 public class Producto {
 	
 	private String codigo;
@@ -59,7 +58,7 @@ public Producto(String codigo) {
 
 	@Override
 	public String toString() {
-		return " codigo " + codigo + ", Nombre " + Nombre + ", Cantidad " + Cantidad + ", Precio " + Precio;
+		return "codigo " + codigo + ", Nombre " + Nombre + ", Cantidad " + Cantidad + ", Precio " + Precio + " €";
 	}
 	
 	
