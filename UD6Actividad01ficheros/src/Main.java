@@ -1,9 +1,16 @@
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.DataInputStream;
 import java.io.DataOutputStream;
+import java.io.EOFException;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -19,6 +26,35 @@ public class Main {
 		final boolean modoApend = true; //cambiar a true para activar modo append
 
 		Map<String, Producto> miLista = new HashMap<String, Producto>();
+		
+		try(FileReader myreader =  new FileReader(myPath+myFile);
+				BufferedReader buffer = new BufferedReader(myreader);)
+		{
+			String line = null;
+			do {
+
+				line = buffer.readLine();
+				if(line != null)
+				{
+					
+					String [] elementos = line.split(" , ");
+					String codigo = elementos[0];
+					String nombre = elementos[1];
+					int cantidad = Integer.parseInt(elementos[2]);
+					double precio = Double.parseDouble(elementos[3]);
+					
+					Producto p = new Producto(codigo,nombre,cantidad,precio);
+					miLista.put(codigo, p);
+				}
+				
+				
+			}while(line != null);
+			
+		}catch(IOException e)
+		{
+			System.out.println("Se ha producido un error en el manejo del fichero");
+			System.out.println(e.getMessage());
+		}
 	
 		String [] opciones = {"1) Crear producto","2) Mostrar productos existentes", 
 				"3) Eliminar producto por código","4) Guardar productos en el fichero","5) Salir"};
@@ -53,21 +89,41 @@ public class Main {
 					miLista.put(codigo,producto);
 				}
 				
+
 				
 			}else if(op.equals("2")){
 				
-				System.out.println("Añade el código de el producto");
-				String codigo = reader.next();
+				List<String> ProductoLeidos = new LinkedList<String>();
 				
-				if(miLista.containsKey(codigo)) {
-				       
-				        String informacionCuenta = miLista.get(codigo).toString();
-				        System.out.println(informacionCuenta);
-				    } else {
-				    	System.out.println("El codigo del producto no existe");
-				    }
+				try(FileReader myreader =  new FileReader(myPath+myFile);
+						BufferedReader buffer = new BufferedReader(myreader);)
+				{
+					String line = null;
+					do {
+
+						line = buffer.readLine();
+						if(line != null)
+						{
+							ProductoLeidos.add(line);
+							
+							String [] elementos = line.split(" , ");
+							String codigo = elementos[0];
+							String nombre = elementos[1];
+							int cantidad = Integer.parseInt(elementos[2]);
+							double precio = Double.parseDouble(elementos[3]);
+							
+							System.out.println(line);
+						}
+						
+						
+					}while(line != null);
+					
+				}catch(IOException e)
+				{
+					System.out.println("Se ha producido un error en el manejo del fichero");
+					System.out.println(e.getMessage());
+				}
 				
-				Producto producto  = new Producto(codigo);
 
 				
 			}else if(op.equals("3")){
@@ -89,28 +145,27 @@ public class Main {
 				
 			}else if(op.equals("4")){	
 				
-				
-				
-				try(FileWriter myWriter = new FileWriter(myPath + myFile, false);
+				try(FileWriter myWriter = new FileWriter(myPath+myFile, false);
 						BufferedWriter buffer = new BufferedWriter(myWriter);)
 				{
-					
-					for(Producto p: miLista.values())
-					{
+					for(Producto p : miLista.values()) {
+						
 						buffer.write(p.getCodigo() +" , "+ p.getNombre() + " , " + p.getCantidad() + " , " + p.getPrecio() );
 						buffer.newLine(); 
 						 
 					}
-				
-				}catch(IOException e) 
+
+					
+				}catch(IOException e)
 				{
-					System.out.println("Se ha producido un error en el manejo del fichero "+ myFile);
+					System.out.println("Se ha producido un error en el manejo del fichero");
 					System.out.println(e.getMessage());
 				}
 				finally {
-					System.out.println("La escritura del fichero ha finalizado..... \n");
+					System.out.println("La escritura ha finalizado con exito.");
 				}
-				
+
+					
 			}else if(op.equals("5")){
 				
 				System.out.println("Saliendo del programa. Buen dia.");
