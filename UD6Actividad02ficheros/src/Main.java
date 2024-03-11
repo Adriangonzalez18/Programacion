@@ -41,7 +41,8 @@ public class Main {
 				int cantidad = lector.readInt();
 				double precio = lector.readDouble();
 				
-				ProductoLeidos.add(new Producto(codigo,nombre,cantidad,precio));
+				Producto p = new Producto(codigo,nombre,cantidad,precio);
+				miLista.put(codigo, p);
 			}
 			
 			
@@ -52,21 +53,14 @@ public class Main {
 			
 		}catch(IOException e)
 		{
-			System.out.println("Ha ocurrido un error al I/O");
+			System.out.println("Se ha producido un error en el manejo del fichero");
 			System.out.println(e.getMessage());
-			
 		}catch(Exception e)
 		{
 			System.out.println("Ha ocurrido un error inexperado");
 			System.out.println(e.getMessage());
 		}
 		
-		
-		System.out.println("Se muestran los datos obtenidos del fichero .dat \n");
-		for(Producto t: ProductoLeidos)
-		{
-			System.out.println(t.toString());
-		}
 	
 		String [] opciones = {"1) Crear producto","2) Mostrar productos existentes", 
 				"3) Eliminar producto por código","4) Guardar productos en el fichero","5) Salir"};
@@ -107,12 +101,12 @@ public class Main {
 				
 				List<Producto> ProductoLeidos = new LinkedList<Producto>();
 				
-				boolean eof = false;
+				boolean eof1 = false;
 				
 				try(FileInputStream fichero = new FileInputStream(myPath+myFile);
 						DataInputStream lector = new DataInputStream(fichero);)
 				{
-					while(!eof)
+					while(!eof1)
 					{
 						//OJO: DANGER DANGER: Tenemos que conocer la estructura del fichero
 						//Trabajador(String nombreC, int edad, double salarioB, String numSS)
@@ -127,7 +121,7 @@ public class Main {
 					
 				}catch(EOFException e)
 				{
-					eof = true;
+					eof1 = true;
 
 					
 				}catch(IOException e)
