@@ -8,6 +8,8 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -22,50 +24,42 @@ public class Main {
 		Scanner reader = new Scanner(System.in);
 		
 		final String myPath = "./src/Resources/";
-		final String myFile = "Almacen.dat";
-		final String myPath1 = "./src/Resources/";
-		final String myFile1 = "Almacen.txt";
+		final String myFile = "Biblioteca.dat";
 		final boolean modoApend = true; //cambiar a true para activar modo append
 
-		Map<String, Producto> miLista = new HashMap<String, Producto>();
+		List<Libro> miLista = new LinkedList<Libro>();
 		
 		boolean eof = false;
 		
-		try(FileInputStream fichero = new FileInputStream(myPath+myFile);
-				DataInputStream lector = new DataInputStream(fichero);)
+		try(FileOutputStream file = new FileOutputStream(myPath+myFile, modoApend );
+				ObjectOutputStream buffer = new ObjectOutputStream(file);)
 		{
-			while(!eof)
+			//Recorro la coleccion y escribo cada uno de sus objetos
+			for(Libro t : miLista)
 			{
-				//OJO: DANGER DANGER: Tenemos que conocer la estructura del fichero
-				//Trabajador(String nombreC, int edad, double salarioB, String numSS)
-				String codigo = lector.readUTF();
-				String nombre = lector.readUTF();
-				int cantidad = lector.readInt();
-				double precio = lector.readDouble();
-				
-				Producto p = new Producto(codigo,nombre,cantidad,precio);
-				miLista.put(codigo, p);
+				//Escribo objeto serializable
+				buffer.writeObject(t);
 			}
-			
-			
-		}catch(EOFException e)
-		{
-			eof = true;
-
 			
 		}catch(IOException e)
 		{
-			System.out.println("Se ha producido un error en el manejo del fichero");
+			System.out.println("Se ha producido un error en la lectura del fichero");
 			System.out.println(e.getMessage());
-		}catch(Exception e)
+		}
+		catch(Exception e)
 		{
-			System.out.println("Ha ocurrido un error inexperado");
 			System.out.println(e.getMessage());
+		}
+		finally {
+			System.out.println("Fin de la escritura del fichero: "+ myFile);
 		}
 		
 	
-		String [] opciones = {"1) Crear producto","2) Mostrar productos existentes", 
-				"3) Eliminar producto por código","4) Guardar productos en el fichero","5) Salir"};
+		String [] opciones = {"1 )Crear Libro y registrarlo en la Biblioteca (ISBN único)", 
+				"2) Mostrar Libros existentes por (ISBN, titulo, Autor, Fecha)", 
+				"3) Eliminar Libro por ISBN",
+				"4) Guardar Libros en el fichero",
+				"5) Guardar y Salir "};
 		
 		String op;
 		
@@ -76,32 +70,32 @@ public class Main {
 			if(op.equals("1")){
 				
 				System.out.println("Añade el código de el producto");
-				String codigo = reader.next();
+				String ISBN = reader.next();
 				
-				if(miLista.containsKey(codigo)) {
+				if(miLista.containsKey(ISBN)) {
 					System.out.println("El producto ya existe");
 				}
 
 				else {
 					System.out.println("Añade el nombre de el producto");
-					String nombre = reader.next();
+					String Titulo = reader.next();
 					
 					System.out.println("Añade la cantidad de el producto");
-					int cantidad = reader.nextInt();
+					String Autor = reader.next();
 					
 					System.out.println("Añade el precio de el producto");
-					double precio = reader.nextDouble();
+					String FechaPublicacion = reader.next();
 					
-					Producto producto  = new Producto(codigo,nombre,cantidad,precio);
+					Libro p = new Libro(ISBN,Titulo,Autor,FechaPublicacion);
 					
-					miLista.put(codigo,producto);
+					miLista.add(new Libro(ISBN,Titulo,Autor,FechaPublicacion));
 				}
 				
 
 				
 			}else if(op.equals("2")){
 				
-				List<Producto> ProductoLeidos = new LinkedList<Producto>();
+				 List<Libro> LibrosLeidos = new LinkedList<Libro>();
 				
 				boolean eof1 = false;
 				
@@ -112,12 +106,12 @@ public class Main {
 					{
 						//OJO: DANGER DANGER: Tenemos que conocer la estructura del fichero
 						//Trabajador(String nombreC, int edad, double salarioB, String numSS)
-						String codigo = lector.readUTF();
-						String nombre = lector.readUTF();
-						int cantidad = lector.readInt();
-						double precio = lector.readDouble();
+						String ISBN = lector.readUTF();
+						String Titulo = lector.readUTF();
+						String Autor = lector.readUTF();
+						String FechaPublicacion = lector.readUTF();
 						
-						ProductoLeidos.add(new Producto(codigo,nombre,cantidad,precio));
+						LibrosLeidos.add(new Libro(ISBN,Titulo,Autor,FechaPublicacion));
 					}
 					
 					
@@ -139,7 +133,7 @@ public class Main {
 				
 				
 				System.out.println("Se muestran los datos obtenidos del fichero .dat \n");
-				for(Producto t: ProductoLeidos)
+				for(Libro t: LibrosLeidos)
 				{
 					System.out.println(t.toString());
 				}
@@ -148,10 +142,10 @@ public class Main {
 			}else if(op.equals("3")){
 				
 				System.out.println("Añade el código de el producto");
-				String codigo = reader.next();
+				String ISBN = reader.next();
 				
-				if(miLista.containsKey(codigo)) {
-					miLista.remove(codigo);
+				if(miLista.containsKey(ISBN)) {
+					miLista.remove(ISBN);
 					System.out.println("El producto se elimino correctamente");
 				}
 
@@ -159,47 +153,32 @@ public class Main {
 					System.out.println("El codigo del producto no existe");
 				}
 				
-				Producto producto  = new Producto(codigo);
+				Libro libro  = new Libro(ISBN);
 				
 				
 			}else if(op.equals("4")){	
 				
-				try(FileOutputStream fichero = new FileOutputStream(myPath+myFile, modoApend);
-						DataOutputStream escritor = new DataOutputStream(fichero);)
+				try(FileOutputStream file = new FileOutputStream(myPath+myFile, modoApend );
+						ObjectOutputStream buffer = new ObjectOutputStream(file);)
 				{
-					for(Producto p : miLista.values()) { 
-						
-						escritor.writeUTF(p.getCodigo());
-						escritor.writeUTF(p.getNombre());
-						escritor.writeInt(p.getCantidad());
-						escritor.writeDouble(p.getPrecio());
+					//Recorro la coleccion y escribo cada uno de sus objetos
+					for(Libro t : miLista)
+					{
+						//Escribo objeto serializable
+						buffer.writeObject(t);
 					}
-
 					
 				}catch(IOException e)
 				{
-					System.out.println("Se ha producido un error en el manejo del fichero");
+					System.out.println("Se ha producido un error en la lectura del fichero");
+					System.out.println(e.getMessage());
+				}
+				catch(Exception e)
+				{
 					System.out.println(e.getMessage());
 				}
 				finally {
-					System.out.println("La escritura ha finalizado con exito.");
-				}
-				
-				try(FileWriter myWriter = new FileWriter(myPath1+myFile1, false);
-						BufferedWriter buffer = new BufferedWriter(myWriter);)
-				{
-					for(Producto p : miLista.values()) {
-						
-						buffer.write(p.getCodigo() +" , "+ p.getNombre() + " , " + p.getCantidad() + " , " + p.getPrecio() );
-						buffer.newLine(); 
-						 
-					}
-
-					
-				}catch(IOException e)
-				{
-					System.out.println("Se ha producido un error en el manejo del fichero");
-					System.out.println(e.getMessage());
+					System.out.println("Fin de la escritura del fichero: "+ myFile);
 				}
 
 					
